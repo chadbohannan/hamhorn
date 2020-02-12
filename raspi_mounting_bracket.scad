@@ -110,6 +110,10 @@ module bracket_assembly() {
     }
 }
 
-bracket_assembly();
+module full_assembly() {
+    bracket_assembly();
+    pi_assembly();
+}
 
-pi_assembly();
+//rotate([0, 0, $t*360])
+    full_assembly();
