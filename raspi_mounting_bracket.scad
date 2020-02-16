@@ -5,7 +5,7 @@ fn = 20;
 module mount_shell(pi_dims, corner_radius, pi_hole_positions, hole_diameter, fn) {
     x = pi_dims[0]/2 - 2;
     y1 = pi_dims[1]/2 - 2;
-    y2 = pi_dims[1]/2 - 22;
+    y2 = pi_dims[1]/2 - 21;
     h = pi_top_post_height() - 10;
     translate([0, 0, pi_dims[2] + 10])
         hull() {
@@ -42,7 +42,7 @@ module bracket_post_sleeves() {
     radius = pi_post_diameter()/2 + 1;
     x = pi_dims()[0]/2-radius;
     y1 = pi_dims()[1]/2 - radius;
-    y2 = pi_dims()[1]/2 - radius - 20;
+    y2 = pi_dims()[1]/2 - radius - 19;
     z = height+6.5;
     translate([x, -y1, z]) cylinder(r=radius, h=height, $fn=fn);
     translate([-x,-y1, z]) cylinder(r=radius, h=height, $fn=fn);
@@ -70,7 +70,7 @@ module bracket_center_mount_face() {
     radius = 2;
     x = pi_dims()[0]/2-radius;
     y1 = pi_dims()[1]/2 - radius;
-    y2 = pi_dims()[1]/2 - radius - 20;
+    y2 = pi_dims()[1]/2 - radius - 19;
 
     hull() {
         translate([ x, -y1, height+1.5]) sphere(r=radius, $fn=fn);
@@ -84,7 +84,7 @@ module bracket_center_mount_face() {
 module bracket_center_mount_hole() {
     translate([-10, -15, pi_top_post_height() + 2])
         rotate([0,60,0])
-            cylinder(h=22, r=2.9, $fn=fn);
+            cylinder(h=22, r=3, $fn=fn);
 }
 
 module bracket_assembly() {
@@ -112,7 +112,7 @@ module bracket_assembly() {
 
 module full_assembly() {
     bracket_assembly();
-    pi_assembly();
+    //pi_assembly();
 }
 
 //rotate([0, 0, $t*360])

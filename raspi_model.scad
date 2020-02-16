@@ -59,7 +59,7 @@ module forty_pin_header() {
 }
 
 // params
-function pi_post_diameter() = 5.2;
+function pi_post_diameter() = 5.3;
 function pi_top_post_height() = 15.0;
 function pi_dims() = [56.0, 85.0, 1.5];
 function pi_corner_radius() = 2.0;
@@ -68,8 +68,8 @@ function pi_hole_diameter() = 2.4;
 function pi_hole_positions() = [
     [ 24.6,-39.1, 1.5],
     [-24.6,-39.1, 1.5],
-    [ 24.6, 19.1, 1.5],
-    [-24.6, 19.1, 1.5]
+    [ 24.6, 20.0, 1.5],
+    [-24.6, 20.0, 1.5]
 ];
 
 module pi_assembly() {
