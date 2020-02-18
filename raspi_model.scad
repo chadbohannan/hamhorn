@@ -26,16 +26,16 @@ module pi_top_posts(hole_positions, post_h, post_d, hole_d, fn) {
     for( pos = hole_positions)
         translate([pos[0], pos[1], pos[2]]) 
             difference(){
-                cylinder(d=post_d, h=post_h, $fn=fn);
+                cylinder(d=post_d, h=post_h, $fn=6);
                 cylinder(d=hole_d, h=post_h, $fn=fn);
             };
 }
 
-module usb_plug() {
+module usb_2a_socket() {
     cube([13.3, 17.0, 13.1]);
 }
 
-module eth_plug() {
+module eth_socket() {
     cube([16.0, 21.3, 14.0]);
 }
 
@@ -54,6 +54,10 @@ module audio_socket() {
             cylinder(d=7.7, h=2.2);
 }
 
+module cpu() {
+    cube([14.5, 14.5, 0.7]);
+}
+
 module forty_pin_header() {
     cube([5.0, 50.5, 8.5]);
 }
@@ -66,10 +70,11 @@ function pi_corner_radius() = 2.0;
 function pi_hole_margin_inset() = 3.4;
 function pi_hole_diameter() = 2.4;
 function pi_hole_positions() = [
+    // y diff == 58.5mm
     [ 24.6,-39.1, 1.5],
     [-24.6,-39.1, 1.5],
-    [ 24.6, 20.0, 1.5],
-    [-24.6, 20.0, 1.5]
+    [ 24.6, 19.4, 1.5],
+    [-24.6, 19.4, 1.5]
 ];
 
 module pi_assembly() {
@@ -77,19 +82,20 @@ module pi_assembly() {
 
     pi_board(pi_dims(), pi_corner_radius(), pi_hole_positions(), pi_hole_diameter(), fn);
 
-    translate([  -25.0, 27.5, 1.5]) usb_plug();
-    translate([  -7.0,  27.5, 1.5]) usb_plug();
-    translate([  10.0,  23.5, 1.5]) eth_plug();
-    translate([  18.0, -22.0, 1.5]) hdmi_socket();
-    translate([   5.5,  -1.5, 1.5]) ribbon_socket();
+    translate([  -25.0, 28.5, 1.5]) usb_2a_socket();
+    translate([  -7.0,  28.5, 1.5]) usb_2a_socket();
+    translate([  10.0,  24.5, 1.5]) eth_socket();
+    translate([  18.0, -19.0, 1.5]) hdmi_socket();
+    translate([   5.5,  0.8, 1.5]) ribbon_socket();
     translate([ -11.0, -41.5, 1.5]) ribbon_socket();
-    translate([  15.0, 5.5, 1.5]) audio_socket();
+    translate([  15.0, 6.5, 1.5]) audio_socket();
+    translate([  -12.0, -25.0, 1.5]) cpu();
     translate([   -27,  -35.5, 1.5]) forty_pin_header();
 
     pi_top_posts(
         pi_hole_positions(),
         pi_top_post_height(),
-        pi_post_diameter(),
+        pi_post_diameter() - 0.4,
         pi_hole_diameter(), fn);
 }
 

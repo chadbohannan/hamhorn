@@ -5,8 +5,8 @@ cap_hole_clearance = 4.5;
 
 cap_rim_radius = 34.5;
 
-base_bottom_radius = 32;
-base_can_height = 70;
+base_bottom_radius = 34;
+base_can_height = 80;
 base_screw_radius = 1.5;
 
 fn=90;
@@ -48,17 +48,37 @@ module base_can() {
     
     difference() {
         union(){
+            // outer cylinder
             translate([0,0,-base_can_height])
-                cylinder(h=base_can_height, r1=base_bottom_radius, r2=cap_rim_radius, $fn=fn);
-                    translate([cap_radius, 0, -depth]) cylinder(h=depth+5, r1=cap_hole_radius, r2=cap_hole_radius-.5, $fn=fn);
-                rotate([0, 0, 120]) translate([cap_radius, 0, -depth]) cylinder(h=depth+3, r1=cap_hole_radius, r2=cap_hole_radius-.5, $fn=fn);
-                rotate([0, 0,-120]) translate([cap_radius, 0, -depth]) cylinder(h=depth+3, r1=cap_hole_radius, r2=cap_hole_radius-.5, $fn=fn);
+                cylinder(
+                    h=base_can_height,
+                    r1=base_bottom_radius,
+                    r2=base_bottom_radius+5, $fn=fn);
 
+            // sleeves
+            translate([cap_radius, 0, -depth])
+                cylinder(h=depth+5,
+                r1=cap_hole_radius,
+                r2=cap_hole_radius-.5, $fn=fn);
+
+            rotate([0, 0, 120])
+                translate([cap_radius, 0, -depth])
+                    cylinder(h=depth+3,
+                            r1=cap_hole_radius,
+                            r2=cap_hole_radius-.5,
+                            $fn=fn);
+
+            rotate([0, 0,-120])
+                translate([cap_radius, 0, -depth])
+                    cylinder(h=depth+3,
+                            r1=cap_hole_radius,
+                            r2=cap_hole_radius-.5,
+                            $fn=fn);
         }
         
         union() {
             translate([0,0,-base_can_height])
-                cylinder(h=base_can_height, r1=base_bottom_radius-3, r2=cap_rim_radius-12, $fn=fn);
+                cylinder(h=base_can_height, r1=base_bottom_radius-6, r2=cap_rim_radius-12, $fn=fn);
             cap_holes();
         }
     }

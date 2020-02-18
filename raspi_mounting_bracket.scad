@@ -6,7 +6,7 @@ module mount_shell(pi_dims, corner_radius, pi_hole_positions, hole_diameter, fn)
     x = pi_dims[0]/2 - 2;
     y1 = pi_dims[1]/2 - 2;
     y2 = pi_dims[1]/2 - 21;
-    h = pi_top_post_height() - 10;
+    h = 5;
     translate([0, 0, pi_dims[2] + 10])
         hull() {
             translate([ x,-y1, 0]) cylinder(r=corner_radius, h=h, $fn=fn);
@@ -42,7 +42,7 @@ module bracket_post_sleeves() {
     radius = pi_post_diameter()/2 + 1;
     x = pi_dims()[0]/2-radius;
     y1 = pi_dims()[1]/2 - radius;
-    y2 = pi_dims()[1]/2 - radius - 19;
+    y2 = pi_dims()[1]/2 - radius - 19.5;
     z = height+6.5;
     translate([x, -y1, z]) cylinder(r=radius, h=height, $fn=fn);
     translate([-x,-y1, z]) cylinder(r=radius, h=height, $fn=fn);
