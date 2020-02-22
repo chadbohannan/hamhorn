@@ -84,7 +84,7 @@ module bracket_center_mount_face() {
 module bracket_center_mount_hole() {
     translate([-10, -15, pi_top_post_height() + 2])
         rotate([0,60,0])
-            cylinder(h=22, r=3, $fn=fn);
+            cylinder(h=22, r=2.95, $fn=fn);
 }
 
 module bracket_assembly() {
